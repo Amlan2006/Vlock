@@ -1,0 +1,32 @@
+{
+  "name": "vlock",
+  "displayName": "Vlock",
+  "description": "Tracks lines of code, coding time, and error count in VS Code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "onCommand:vlock.Vlock"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vlock.Vlock",
+        "title": "Show Vlock Stats"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0",
+    "vscode": "^1.1.39"
+  }
+}

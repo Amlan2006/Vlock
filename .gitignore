@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build output
+out/
+dist/
+lib/
+*.tsbuildinfo
+
+# VS Code specific
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+
+# Coverage (if using Jest or other test tools)
+coverage/
+nyc_output/
+
+# Optional: Package manager lock files (if you prefer not to track)
+# yarn.lock
+# package-lock.json
