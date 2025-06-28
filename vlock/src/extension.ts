@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
   statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
   statusBarItem.tooltip = "Vlock: Code Stats Tracker";
   statusBarItem.show();
-  context.subscriptions.push(statusBarItem);
+  context.subscriptions.push(statusBarItem)
 
   // Track coding time based on window focus
   vscode.window.onDidChangeWindowState((state) => {
@@ -60,6 +60,8 @@ async function updateStatusBar() {
   statusBarItem.text = `📄 ${lines} lines | ⏱️ ${codingMinutes} min | ❌ ${errors} errors`;
 }
 
+// import * as vscode from 'vscode';
+
 async function countTotalLines(): Promise<number> {
   const files = await vscode.workspace.findFiles(
     '**/*.{ts,js,py,cpp,sol,html,css}',
@@ -70,16 +72,16 @@ async function countTotalLines(): Promise<number> {
 
   for (const file of files) {
     try {
-      const fileBytes = await vscode.workspace.fs.readFile(file);
-      const content = Buffer.from(fileBytes).toString('utf8');
-      totalLines += content.split('\n').length;
-    } catch (err) {
-      console.warn(`Cannot read: ${file.fsPath} - ${err}`);
+      const document = await vscode.workspace.openTextDocument(file);
+      totalLines += document.lineCount;
+    } catch (error) {
+      console.error(`Failed to read file ${file.fsPath}:`, error);
     }
   }
 
   return totalLines;
 }
+
 
 function countDiagnostics(): number {
   const diagnostics = vscode.languages.getDiagnostics();
